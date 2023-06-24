@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+  {% block content %}
+
+  <!-- Form -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="alert alert-info flashes">
+              {% for message in messages %}
+              {{ message }}
+              {% endfor %}
+          </div>
+          {% endif %}
+        {% endwith %}
+
+        <form class="card p-4 opacity-50" method="POST">
+          <div class="form-group">
+            <label for="input1">URL:</label>
+            <input type="text" class="form-control" id="input1" name="input1" placeholder="Your url">
+          </div>
+          <div class="form-group">
+            <label for="input2">Description:</label>
+            <textarea type="text" class="form-control" rows="3" name="input2"
+              placeholder="Short description of your business or webpage"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="input3">Location:</label>
+            <input type="text" class="form-control" id="input3" name="input3" placeholder="The city where your business located">
+          </div>
+          <div class="form-group">
+            <label for="input4">Industry:</label>
+            <select type="text" class="form-control" id="input4" name="input4">
+              <option value="\">Lawyer</option>
+            </select>
+          </div>
+          <div class="form-group mb-5">
+            <label for="input5">Sub-industry:</label>
+            <select type="text" class="form-control" id="input5" name="input5">
+              <option value="\">Family law</option>
+              <option value="\">Criminal law</option>
+              <option value="\">Business law</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

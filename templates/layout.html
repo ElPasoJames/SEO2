@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Algorithmic SEC filings">
+  <meta name="author" content="Aelo">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='logo.svg') }}">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Simple Flask</title>
+
+  <style>
+    /* Set background image */
+    body {
+      background-color: #0d3d55;
+      background-size: cover;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="../static/logo.svg" alt="" height="25px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">LinK 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+          </li>
+        </ul>
+      </div>
+      <ul class="navbar-nav ml-auto">
+        {% if not session.logged_in %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
+
+        {% if session.logged_in %}
+        <li>
+          <a class="nav-link" href="/logout">Log out</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

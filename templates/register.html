@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Form -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="alert alert-warning flashes">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <div class="alert alert-warning d-none" id="passwordAlert">
+      </div>
+
+      <form class="card p-4 opacity-50" action="{{ url_for('register') }}" method="POST">
+	  <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
+          </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group mb-5">
+          <label for="confirm_password">Confirm Password:</label>
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+            placeholder="Confirm Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+<script>
+  const password = document.getElementById("password");
+  const confirm_password = document.getElementById("confirm_password");
+
+  function validatePassword() {
+    if (password.value !== confirm_password.value) {
+      const myDiv = document.getElementById("passwordAlert");
+      myDiv.classList.add("d-block");
+      myDiv.innerHTML = "Password and confirm password must be same!"
+      return false;
+    } else if (password.value.length < 6) {
+      const myDiv = document.getElementById("passwordAlert");
+      myDiv.classList.add("d-block");
+      myDiv.innerHTML = "Password must be at least 6 characters long."
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  document.querySelector("form").addEventListener("submit", function (event) {
+    if (!validatePassword()) {
+      event.preventDefault();
+    }
+  });
+
+</script>
+
+{% endblock %}
