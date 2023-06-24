@@ -15,7 +15,7 @@ current_folder = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
 app.secret_key = 'gpt-secret-key'
 
-API_KEY = 'IzaSyCLEPrZxeYkN73c5vAb-BBqdn2dVAxyJ0Q'
+API_KEY = ''
 AUTH_API_BASE_URL = f'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}'
 
 @app.route('/', methods=['GET', 'POST'])
